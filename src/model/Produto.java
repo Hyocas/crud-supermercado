@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.ImageIcon;
+
 public class Produto {
 
     private int id;
@@ -7,7 +9,14 @@ public class Produto {
     private float preco;
     private int estoque;
     private String descricao;
+    private ImageIcon imagens;
 
+    public ImageIcon getImagem() {
+        return imagens;
+    }
+    public void setImagem(ImageIcon imagens) {
+        this.imagens = imagens;
+    }
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

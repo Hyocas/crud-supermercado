@@ -8,3 +8,7 @@ CREATE TABLE produto (
     estoque INT,
     descricao TEXT
 );
+
+ALTER TABLE produto ADD imagem LONGBLOB;
+
+SELECT * FROM produto;
