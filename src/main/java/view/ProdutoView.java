@@ -1,23 +1,22 @@
 package view;
 
-import model.Produto;
-import dao.ProdutoDAO;
-import util.ConnectionFactory;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import controller.ProdutoController;
+import model.Produto;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import javax.imageio.ImageIO;
 
 public class ProdutoView extends JFrame {
     private JTextField nomeField, precoField, estoqueField, descricaoField;
-    private ProdutoDAO dao;
+    private ProdutoController controller;
     private JLabel imagemLabel;
     private File imagemSelecionada;
     private JScrollPane painelScroll;
@@ -32,7 +31,8 @@ public class ProdutoView extends JFrame {
     private final Color BUTTON_DANGER = new Color(224, 108, 117);
     private final Color BORDER_COLOR_DARK = new Color(70, 74, 82);
 
-    public ProdutoView() {
+    public ProdutoView(ProdutoController controller) {
+        this.controller = controller; 
         setTitle("Gerenciar Produtos");
         setSize(1200, 750);
         setLocationRelativeTo(null);
@@ -40,8 +40,6 @@ public class ProdutoView extends JFrame {
         setLayout(new BorderLayout(15, 15));
         getContentPane().setBackground(PRIMARY_DARK);
 
-        Connection conexao = ConnectionFactory.getConnection();
-        dao = new ProdutoDAO(conexao);
 
         JPanel topPanel = new JPanel(new BorderLayout(20, 20));
         topPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
@@ -226,10 +224,10 @@ public class ProdutoView extends JFrame {
 
         try {
             if (produtoSelecionado.getId() == 0) {
-                dao.salvar(produtoSelecionado);
+                controller.salvarProduto(produtoSelecionado);
                 JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                dao.atualizar(produtoSelecionado);
+                controller.salvarProduto(produtoSelecionado);
                 JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
             limparFormulario();
@@ -249,7 +247,7 @@ public class ProdutoView extends JFrame {
 
     private void listarProdutos() {
         try {
-            List<Produto> produtos = dao.listarTodos();
+            List<Produto> produtos = controller.listarProdutos();
             JPanel productsContainerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
             productsContainerPanel.setBackground(PRIMARY_DARK);
             productsContainerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -338,7 +336,7 @@ public class ProdutoView extends JFrame {
                         int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir o produto '" + p.getNome() + "'?", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                         if (opcao == JOptionPane.YES_OPTION) {
                             try {
-                                dao.excluir(p.getId());
+                                controller.excluirProduto(p.getId());
                                 JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                                 listarProdutos();
                                 limparFormulario();
@@ -408,15 +406,4 @@ public class ProdutoView extends JFrame {
         imagemLabel.setText("Nenhuma imagem");
         imagemLabel.setIcon(null);
         imagemLabel.setForeground(TEXT_LIGHT);}
-
-    public static void main(String[] args) {
-        try {
-
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-
-        SwingUtilities.invokeLater(ProdutoView::new);
-    }
 }

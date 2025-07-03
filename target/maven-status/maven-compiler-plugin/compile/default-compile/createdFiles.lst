@@ -1,0 +1,6 @@
+view/ProdutoView.class
+view/Main.class
+dao/ConnectionFactory.class
+controller/ProdutoController.class
+model/Produto.class
+dao/ProdutoDAO.class

@@ -1,9 +1,9 @@
 package dao;
 
-import model.Produto;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import model.Produto;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

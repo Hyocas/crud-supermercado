@@ -11,12 +11,9 @@ public class Produto {
     private String descricao;
     private ImageIcon imagens;
 
-    public ImageIcon getImagem() {
-        return imagens;
-    }
-    public void setImagem(ImageIcon imagens) {
-        this.imagens = imagens;
-    }
+    public ImageIcon getImagem() { return imagens; }
+    public void setImagem(ImageIcon imagens) { this.imagens = imagens; }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -29,7 +26,7 @@ public class Produto {
     public int getEstoque() { return estoque; }
     public void setEstoque(int estoque) { this.estoque = estoque; }
 
-    public String getDescricao() { return descricao; }
+    public String getDescricao() { return descricao != null ? descricao : ""; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
 
 }
