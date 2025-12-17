@@ -1,12 +1,10 @@
-# Supermarket Product Manager (CRUD)
+# Supermercado
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Completed-success)
+![Java](https://img.shields.io/badge/Java-red)
+![MySQL](https://img.shields.io/badge/Mysql-blue)
+![Status](https://img.shields.io/badge/Educational-success)
 
 > Sistema de gerenciamento de produtos desenvolvido como parte da disciplina de **Engenharia de Software**. O projeto implementa um CRUD completo (Create, Read, Update, Delete) com persistência em banco de dados relacional e manipulação de imagens.
-
----
 
 ## Funcionalidades
 
@@ -18,8 +16,6 @@ O sistema foca na gestão de inventário do supermercado, permitindo:
 * **Interface Moderna:** UI customizada em Java Swing com tema escuro ("Dark Mode") para melhor usabilidade.
 * **Persistência:** Conexão robusta com banco de dados MySQL.
 
----
-
 ## Arquitetura do Projeto
 
 O software foi estruturado seguindo o padrão **MVC (Model-View-Controller)** com a camada adicional **DAO (Data Access Object)** para separar a lógica de negócios da persistência de dados.
@@ -29,16 +25,12 @@ O software foi estruturado seguindo o padrão **MVC (Model-View-Controller)** co
 * **Controller:** Intermediação entre a interface e o banco de dados (`ProdutoController.java`).
 * **DAO:** Execução de queries SQL e gerenciamento de conexões JDBC (`ProdutoDAO.java`).
 
----
-
 ## Tecnologias Utilizadas
 
 * **Java 17+**
 * **Java Swing** (GUI)
 * **JDBC** (Java Database Connectivity)
 * **MySQL** (Banco de Dados)
-
----
 
 ## Como Executar
 
